@@ -1,4 +1,7 @@
 package org.example;
 
-public class Mark {
+public enum Mark {
+    X,
+    O,
+    EMPTY
 }

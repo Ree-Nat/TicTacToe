@@ -3,6 +3,6 @@ package org.example;
 
 public abstract class Player {
     Mark mark;
-    public abstract void nextMove(Move move);
-    public abstract void getMark();
+    public abstract Move nextMove(Board board);
+    public abstract Mark getMark();
 }

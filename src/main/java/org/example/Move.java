@@ -3,8 +3,8 @@ package org.example;
 
 public class Move {
     private final int MAX_SIZE = 2;
-    int row = MAX_SIZE;
-    int column = MAX_SIZE;
+    public int row = MAX_SIZE;
+    public int column = MAX_SIZE;
     Mark mark;
 
 

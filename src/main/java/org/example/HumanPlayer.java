@@ -2,28 +2,33 @@ package org.example;
 
 import java.util.Scanner;
 
-public class HumanPlayer extends Player{
+public class HumanPlayer extends Player {
 
-    private final Mark mark;
-    public HumanPlayer(Mark mark) {
-        this.mark = mark;
-    }
+    public HumanPlayer(Mark mark) { super(mark); } // Calls Player constructor using super for HumanPlayer instance
+
     @Override
-    //Asks human for next move, move configures the board
-    //Returns move object
     public Move nextMove(Board board) {
         Scanner input = new Scanner(System.in);
-        System.out.print("Enter row: ");
-        int row = input.nextInt();
-        System.out.print("Enter Column: ");
-        int column = input.nextInt();
-        //Modify board here
+        int row, column;
 
-        //
-        return new Move(row, column, mark);
-    }
-    @Override
-    public Mark getMark() {
-        return this.mark;
+        while (true) {
+            // User input
+            System.out.print("Enter row: ");
+            row = input.nextInt();
+
+            System.out.print("Enter column: ");
+            column = input.nextInt();
+
+            // returns valid move if space is empty.
+            try {
+                if (board.getCell(row, column) == Mark.EMPTY) {
+                    return new Move(row, column, mark);
+                } else {
+                    System.out.println("Cell is taken, try again!");
+                }
+            } catch (IndexOutOfBoundsException | IllegalArgumentException e) {
+                System.out.println("Illegal move, try again!");
+            }
+        }
     }
 }

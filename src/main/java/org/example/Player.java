@@ -1,8 +1,21 @@
 package org.example;
 
+/*
+
+Step B — Players (Inheritance)
+1. abstract class Player with fields protected final Mark mark.
+
+   public abstract Move nextMove(Board board);
+
+*/
 
 public abstract class Player {
-    Mark mark;
+    protected final Mark mark;
+
+    public Player(Mark mark) { this.mark = mark; }
+
     public abstract Move nextMove(Board board);
-    public abstract Mark getMark();
+
+    // Getter
+    public Mark getMark() { return mark; }
 }

@@ -1,13 +1,19 @@
 package org.example;
 
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
         Board board = new Board(3);
-        Player human = new HumanPlayer(Mark.X);
-        Player human2 = new HumanPlayer(Mark.O);
-
-        Player currentPlayer = human; // Sets who is the first player
-
+        Player first_player = new HumanPlayer(Mark.O); // Sets who is the first player
+        Player second_player = new HumanPlayer(Mark.X); // Sets who is the first player
+        RandomAIPlayer aiPlayer;
+        int playerChoice = choosePlayerType();
+        if (playerChoice == 0) {
+            second_player = new RandomAIPlayer(Mark.X); // Sets who is the first player
+        }
+        Player currentPlayer = first_player;
         // Main game loop
         while (true) {
             ConsoleApp.drawBoard(board);
@@ -27,8 +33,34 @@ public class Main {
             }
 
             // Changes current player after a turn has been made
-            currentPlayer = (currentPlayer == human) ? human2 : human;
+            currentPlayer = (currentPlayer == first_player) ? second_player : first_player;
         }
+    }
+
+
+    //returns player choice to choose AI player or human player
+    private static int choosePlayerType(){
+        System.out.println("Type which opponent to play against - \n 0:AI \n 1:Human");
+        Scanner scanner = new Scanner(System.in);
+        boolean valid = false;
+        int output = -1;
+        while(!valid)
+        {
+            try{
+                output = scanner.nextInt();
+                if(!(output == 1 || output == 0))
+                {
+                    System.out.println("Invalid choice. Try again.");
+                }
+                else {valid = true;}
+            }
+            catch (InputMismatchException e) {
+                System.out.println("Input must be an integer");
+                scanner.next();
+            }
+
+        }
+        return output;
     }
 
     // Checks which mark has won

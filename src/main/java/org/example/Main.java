@@ -2,7 +2,7 @@ package org.example;
 
 public class Main {
     public static void main(String[] args) {
-        Board board = new Board();
+        Board board = new Board(3);
         Player human = new HumanPlayer(Mark.X);
         Player human2 = new HumanPlayer(Mark.O);
 

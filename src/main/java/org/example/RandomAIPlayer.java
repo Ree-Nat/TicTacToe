@@ -3,10 +3,20 @@ package org.example;
 
 import java.util.Random;
 
+/**
+ * Represents an AI player
+ *
+ * @author Nathan Rinon
+ * **/
 public class RandomAIPlayer extends Player {
     private final Random random = new Random(); // Random number generator
     private final Mark opponent_mark;
 
+    /**
+     * Returns an AI player object
+     * @param mark a mark object containing the AI's mark
+     * @returns a RandomAIPlayer object
+     * **/
     public RandomAIPlayer(Mark mark) {
         super(mark);
         if(this.getMark() == Mark.X)
@@ -16,14 +26,15 @@ public class RandomAIPlayer extends Player {
         else{
             opponent_mark = Mark.X;
         }
-    } // Calls Player constructor using super for RandomAIPlayer instance
+    }
 
-
+    /**
+     * returns the next best available move on a board object for
+     * the artificial intelligence to make
+     * @param board object
+     * @return a Move object that is free to Mark on board
+     */
     @Override
-    // Checks to see if center is taken
-    // If center is not taken, looks to block win
-    // If there is no oppurtunity to block, Looks for oppurtunity to win
-    // Looks for the next empty cell (starting from 0,0 -> 0,1 ... 2,2)
     public Move nextMove(Board board) {
         if (is_middle_empty(board)) {
             return new Move(1, 1, mark);
@@ -95,7 +106,6 @@ public class RandomAIPlayer extends Player {
         return checkCol(board, required_marks, mark);
     }
 
-    //checks column if it has a certain amount of marks and contains an empty cell
     private Move checkCol(Board board, int required_marks, Mark mark) {
         boolean hasEmpty = false;
         int mark_count = 0;
@@ -121,7 +131,6 @@ public class RandomAIPlayer extends Player {
         return check_right_diagonal(board, required_marks, mark);
     }
 
-    //checks right_diagonal if it has a certain amount of marks and contains an empty cell
     private Move check_right_diagonal(Board board, int required_marks, Mark mark) {
         int mark_count = 0;
         boolean hasEmpty = false;
@@ -144,7 +153,6 @@ public class RandomAIPlayer extends Player {
     }
 
 
-    //checks left_diagonal if it has a certain amount of marks and contains an empty cell
     private Move check_left_diagonal(Board board, int required_marks, Mark mark) {
         int mark_count = 0;
         boolean hasEmpty = false;

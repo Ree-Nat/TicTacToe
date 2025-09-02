@@ -1,20 +1,20 @@
 package org.example;
 
-import java.util.Optional;
-
 public class Board {
-    private final int SIZE = 3;
+    private final int size;
     private final Mark[][] grid;
 
     // Constructor
-    public Board() {
-        grid = new Mark[SIZE][SIZE];
+    public Board(int size) {
+        if (size < 1) throw new IllegalArgumentException("Board size must be positive!");
+        this.size = size;
+        grid = new Mark[size][size];
         reset();
     }
 
     // Getters
     public int getSize() {
-        return SIZE;
+        return size;
     }
 
     public Mark getCell(int row, int col) {
@@ -24,8 +24,8 @@ public class Board {
 
     // Resets the board
     public void reset() {
-        for (int i = 0; i < SIZE; i++) {
-            for (int j = 0; j < SIZE; j++) {
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
                 grid[i][j] = Mark.EMPTY;
             }
         }
@@ -33,7 +33,7 @@ public class Board {
 
     // Checks if row or column is out of bounds
     private void checkBounds(int row, int col) {
-        if (row < 0 || row >= SIZE || col < 0 || col >= SIZE) {
+        if (row < 0 || row >= size || col < 0 || col >= size) {
             throw new IndexOutOfBoundsException("Cell out of bounds");
         }
     }

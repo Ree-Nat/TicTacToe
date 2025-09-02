@@ -1,27 +1,29 @@
 package org.example;
 
+// Move (immutable): row, col, mark with getters; validate in constructor (row/col ≥ 0).
 
 public class Move {
-    private final int MAX_SIZE = 2;
-    public int row = MAX_SIZE;
-    public int column = MAX_SIZE;
-    Mark mark;
+    private final int row, column;
+    private final Mark mark;
 
+    // Constructor
+    public Move(int row, int column, Mark mark) {
+        if (row < 0 || column < 0)
+        {
+            throw new IllegalArgumentException("Row and column must be positive!");
+        }
+        if (mark == null)
+        {
+            throw new IllegalArgumentException("Mark must not be null!");
+        }
 
-    public Move(int row, int column, Mark mark){
-        checkArguments(row, column);
         this.row = row;
         this.column = column;
         this.mark = mark;
     }
 
-    private void checkArguments(int column, int row){
-        if (column > MAX_SIZE || column < 0){
-            throw new IllegalArgumentException("Illegal Column Size");
-        }
-        if (row > MAX_SIZE || row < 0){
-            throw new IllegalArgumentException("Illegal Row Size");
-        }
-    }
-
+    // Getters
+    public int getRow() { return row; }
+    public int getColumn() { return column; }
+    public Mark getMark() { return mark; }
 }

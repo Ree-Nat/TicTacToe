@@ -13,9 +13,9 @@ public class RandomAIPlayer extends Player {
     private final Mark opponent_mark;
 
     /**
-     * Returns an AI player object
+     * Initializes a RandomAIPlayer
      * @param mark a mark object containing the AI's mark
-     * @returns a RandomAIPlayer object
+     *
      * **/
     public RandomAIPlayer(Mark mark) {
         super(mark);

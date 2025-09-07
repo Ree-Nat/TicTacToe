@@ -11,14 +11,16 @@ import java.util.Random;
 public class RandomAIPlayer extends Player {
     private final Random random = new Random(); // Random number generator
     private final Mark opponent_mark;
+    private final Strategy strategy;
 
     /**
      * Initializes a RandomAIPlayer
      * @param mark a mark object containing the AI's mark
      *
      * **/
-    public RandomAIPlayer(Mark mark) {
+    public RandomAIPlayer(Mark mark,  Strategy strategy) {
         super(mark);
+        this.strategy = strategy;
         if(this.getMark() == Mark.X)
         {
             opponent_mark = Mark.O;

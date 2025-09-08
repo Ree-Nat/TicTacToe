@@ -95,7 +95,13 @@ class GameTest {
 
         board.place(new Move(1, 1, Mark.X)); // places mark at 1, 1
 
-        // throw exeption due to cell taken
+        // throw exception due to cell taken
         assertThrows(IllegalArgumentException.class, () -> board.place(new Move(1, 1, Mark.X)));
+    }
+    
+    @Test void testToString() { // directly check for last mark
+        Move mark = new Move(0, 0, Mark.X);
+        String expected = "Last mark: X";
+        assertEquals(expected, mark.toString());
     }
 }

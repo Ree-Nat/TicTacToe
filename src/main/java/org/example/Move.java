@@ -26,4 +26,8 @@ public class Move {
     public int getRow() { return row; }
     public int getColumn() { return column; }
     public Mark getMark() { return mark; }
+
+    @Override public String toString() {
+        return "Last mark: " + mark;
+    }
 }
